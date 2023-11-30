@@ -3,7 +3,9 @@ export default function taskBlock(trueOrFalse) {
   const task2 = true;
 
   if (trueOrFalse) {
+    // eslint-disable-over-writting
     const task = true;
+    // eslint-disable-over-writting
     const task2 = false;
   }
 
