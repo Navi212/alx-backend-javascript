@@ -19,10 +19,26 @@ interface Teacher {
 
 const teacher3: Teacher = {
     firstName: 'John',
-    fullTimeEmployee: false,
     lastName: 'Doe',
+    fullTimeEmployee: false,
     location: 'London',
     contract: false,
   };
   
-  console.log(teacher3);
+console.log(teacher3);
+
+// Write an interface named Directors that extends Teacher.
+// It requires an attribute named numberOfReports(number)
+interface Directors extends Teacher {
+    numberOfReports: number;
+}
+
+const director1: Directors = {
+    firstName: 'John',
+    lastName: 'Doe',
+    location: 'London',
+    fullTimeEmployee: true,
+    numberOfReports: 17,
+  };
+
+  console.log(director1);
