@@ -8,6 +8,7 @@ Add the possibility to add any attribute to the Object like contract(boolean)
 without specifying the name of the attribute
 */
 
+// Task 0
 interface Teacher {
     readonly firstName: string;
     readonly lastName: string;
@@ -17,6 +18,7 @@ interface Teacher {
     [key: string]: any;
 }
 
+//Task 1
 const teacher3: Teacher = {
     firstName: 'John',
     lastName: 'Doe',
@@ -27,6 +29,7 @@ const teacher3: Teacher = {
   
 console.log(teacher3);
 
+// Task 2
 // Write an interface named Directors that extends Teacher.
 // It requires an attribute named numberOfReports(number)
 interface Directors extends Teacher {
@@ -43,7 +46,7 @@ const director1: Directors = {
 
   console.log(director1);
 
-
+  // Task 3
   // Printing teachers
   /*
   Write a function printTeacher:
@@ -65,3 +68,33 @@ const director1: Directors = {
 
   // Tests the output passing parameters
   console.log(printTeacher("San", "Andrea"));
+
+
+  //Task 4
+  // Creates interface for the class
+  interface StudentClass {
+    workOnHomework(): string;
+    displayName(): string;
+  }
+
+  // Creates interface for the constructor
+  interface ClassConstructor {
+    new (firstName: string, lastName: string): StudentClass;
+  }
+
+  // Implements the class using the defines class interface `StudentClass`
+  class StudentClass implements StudentClass{
+
+    constructor(public firstName: string, public lastName:string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    
+    workOnHomework() {
+        return "Currently working";
+    }
+
+    displayName() {
+        return `${this.firstName}`;
+    }
+  }
