@@ -23,4 +23,9 @@ var director1 = {
     numberOfReports: 17,
 };
 console.log(director1);
+var printTeacher = function (firstName, lastName) {
+    var fullName = "".concat(firstName[0], ". ").concat(lastName);
+    return fullName;
+};
+console.log(printTeacher("San", "Andrea"));
 //# sourceMappingURL=main.js.map

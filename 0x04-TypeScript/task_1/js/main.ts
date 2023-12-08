@@ -42,3 +42,26 @@ const director1: Directors = {
   };
 
   console.log(director1);
+
+
+  // Printing teachers
+  /*
+  Write a function printTeacher:
+    It accepts two arguments firstName and lastName
+    It returns the first letter of the firstName and the full lastName
+    Example: printTeacher("John", "Doe") -> J. Doe
+  Write an interface for the function named printTeacherFunction.
+  */
+ // Creates an interface for the function parameters and return type
+  interface printTeacherFunction {
+    (firstName: string, lastName: string): string;
+  }
+
+  // Creates an arrow function assigning it to a variable as function name
+  const printTeacher: printTeacherFunction = (firstName, lastName) => {
+    const fullName = `${firstName[0]}. ${lastName}`;
+    return fullName;
+  };
+
+  // Tests the output passing parameters
+  console.log(printTeacher("San", "Andrea"));
