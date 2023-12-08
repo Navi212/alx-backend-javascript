@@ -95,3 +95,26 @@ const executeWork = (employee: Teacher | Director) => {
 
 executeWork(createEmployee(200));
 executeWork(createEmployee(1000));
+
+
+// Task 7
+// A String literal type named Subjects allowing a variable
+// to have the value Math or History only.
+type Subjects = "Math" | "History";
+
+/*
+Write a function named teachClass:
+it takes todayClass as an argument
+it will return the string Teaching Math if todayClass is Math
+it will return the string Teaching History if todayClass is History
+*/
+const teachClass = (todayClass: Subjects): string =>  {
+    if (todayClass === "Math") {
+        return `Teaching Math`;
+    } else if (todayClass === "History") {
+        return `Teaching History`;
+    }
+}
+
+console.log(teachClass('Math'));
+console.log(teachClass('History'));
