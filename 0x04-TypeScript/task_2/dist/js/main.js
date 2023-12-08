@@ -1,3 +1,5 @@
+// Advanced types Part 1
+// Creates a class Director that will implement DirectorInterface
 var Director = /** @class */ (function () {
     function Director() {
     }
@@ -12,6 +14,7 @@ var Director = /** @class */ (function () {
     };
     return Director;
 }());
+// Create a class Teacher that will implement TeacherInterface
 var Teacher = /** @class */ (function () {
     function Teacher() {
     }
@@ -26,6 +29,15 @@ var Teacher = /** @class */ (function () {
     };
     return Teacher;
 }());
+/*
+Create a function createEmployee with the following requirements:
+
+It can return either a Director or a Teacher instance
+It accepts 1 arguments:
+salary(either number or string)
+if salary is a number and less than 500 - It should return
+a new Teacher. Otherwise it should return a Director
+*/
 function createEmployee(salary) {
     if (typeof salary === "number" && salary < 500) {
         return new Teacher();
@@ -36,8 +48,32 @@ function createEmployee(salary) {
 }
 ;
 console.log(createEmployee(200));
-Teacher;
 console.log(createEmployee(1000));
-Director;
 console.log(createEmployee('$500'));
+// Task 6
+// Creating functions specific to employees
+/*
+Write a function isDirector:
+    it accepts employee as an argument
+    it will be used as a type predicate and if the employee is a director
+*/
+var isDirector = function (employee) {
+    return employee instanceof Director;
+};
+/*
+Write a function executeWork:
+    it accepts employee as an argument
+    if the employee is a Director, it will call workDirectorTasks
+    if the employee is a Teacher, it will call workTeacherTasks
+*/
+var executeWork = function (employee) {
+    if (isDirector(employee)) {
+        console.log("".concat(employee.workDirectorTasks()));
+    }
+    else {
+        console.log("".concat(employee.workTeacherTasks()));
+    }
+};
+executeWork(createEmployee(200));
+executeWork(createEmployee(1000));
 //# sourceMappingURL=main.js.map
