@@ -1,8 +1,9 @@
-/* A function named `displayMessage` that prints in STDOUT
-* the string argument.
-*/
-function displayMessage(arg) {
-  console.log(`${arg}\n`);
-};
-
-module.exports = displayMessage;
+/**
+ * Displays a message on the STDOUT.
+ * @param {String} msg The message to display.
+ */
+const displayMessage = (msg) => {
+    console.log(msg);
+  };
+  
+  module.exports = displayMessage;
