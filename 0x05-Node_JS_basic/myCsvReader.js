@@ -1,8 +1,10 @@
+const { error } = require("node:console");
 const fs = require("node:fs");
 let studentByField = {};
 let totalStudents = 0;
 
-const countStudents = (file) => new Promise((resolve, reject) => {
+const file = process.argv.length > 2 ? process.argv[2] : "";
+const countStudents = () => new Promise((resolve, reject) => {
     fs.readFile(file, "utf-8", (err, data)=> {
         if (err) {
             reject("Cannot load the database");
@@ -32,5 +34,5 @@ const countStudents = (file) => new Promise((resolve, reject) => {
         resolve(result);
     });
 })
-
-module.exports = countStudents
+// Export directly as a function
+module.exports = {countStudents};
