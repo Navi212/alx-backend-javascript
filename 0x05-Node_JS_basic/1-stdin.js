@@ -11,7 +11,7 @@ When the user ends the program, it should display
 const text = "Welcome to Holberton School, what is your name?\n"
 process.stdout.write(`${text}`)
 process.stdin.on("readable", ()=>{
-    let chunk = process.stdin.read();
+    const chunk = process.stdin.read();
     if (chunk !== null){
         process.stdout.write(`Your name is: ${chunk}`);
     }
