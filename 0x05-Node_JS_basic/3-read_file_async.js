@@ -1,36 +1,42 @@
-const fs = require("node:fs");
-let studentByField = {};
-let totalStudents = 0;
+const { readFile } = require('fs');
 
-const countStudents = (file) => new Promise((resolve, reject) => {
-    fs.readFile(file, "utf-8", (err, data)=> {
-        if (err) {
-            reject("Cannot load the database");
+function countStudents(fileName) {
+  const students = {};
+  const fields = {};
+  let length = 0;
+  return new Promise((resolve, reject) => {
+    readFile(fileName, (error, data) => {
+      if (error) {
+        reject(Error('Cannot load the database'));
+      } else {
+        const lines = data.toString().split('\n');
+        for (let i = 0; i < lines.length; i += 1) {
+          if (lines[i]) {
+            length += 1;
+            const field = lines[i].toString().split(',');
+            if (Object.prototype.hasOwnProperty.call(students, field[3])) {
+              students[field[3]].push(field[0]);
+            } else {
+              students[field[3]] = [field[0]];
+            }
+            if (Object.prototype.hasOwnProperty.call(fields, field[3])) {
+              fields[field[3]] += 1;
+            } else {
+              fields[field[3]] = 1;
+            }
+          }
         }
-        else if(data) {
-            const csvData = data.trim().split("\n");
-            csvData.forEach((col, row) => {
-                if (row === 0) {
-                    return;
-                }
-                totalStudents += 1;
-                const columns = col.split(",");
-                const firstname = columns[0];
-                const field = columns[3];
-                studentByField[field] = studentByField[field] || {count: 0, list: []};
-                studentByField[field].count += 1;
-                studentByField[field].list.push(firstname);
-            });
+        const l = length - 1;
+        console.log(`Number of students: ${l}`);
+        for (const [key, value] of Object.entries(fields)) {
+          if (key !== 'field') {
+            console.log(`Number of students in ${key}: ${value}. List: ${students[key].join(', ')}`);
+          }
         }
-        //console.log(`Number of students: ${totalStudents}`);
-        let result = `Number of students: ${totalStudents}\n`;
-        for (let field in studentByField) {
-            let {count, list} = studentByField[field];
-            result += `Number of students in ${field}: ${count}. List: ${list.join(', ')}\n`;
-            //console.log(`Number of students in ${field}: ${count}. List: ${list}`);
-        }
-        resolve(result);
+        resolve(data);
+      }
     });
-})
+  });
+}
 
-module.exports = countStudents
+module.exports = countStudents;
